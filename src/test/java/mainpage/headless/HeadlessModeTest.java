@@ -2,13 +2,12 @@ package mainpage.headless;
 
 import factory.WebDriverFactory;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.MainPage;
 
 public class HeadlessModeTest {
-    private static WebDriverFactory webDriverFactory = new WebDriverFactory();
+    private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
     private WebDriver driver = null;
 
     @BeforeAll
@@ -27,10 +26,9 @@ public class HeadlessModeTest {
     // нет открытия вкладок из-за хэдлесс режима????
 
     @Test
-    public void textInputTest() throws InterruptedException {
+    public void textInputTest() {
         MainPage page = new MainPage(driver);
         page.open();
-        Thread.sleep(1000);
 
         WebElement textInputEl = page.getTextInput();
         page.textIntoElement(textInputEl, "ОТУС");

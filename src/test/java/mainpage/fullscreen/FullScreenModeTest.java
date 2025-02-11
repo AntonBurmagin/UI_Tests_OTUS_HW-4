@@ -1,45 +1,40 @@
 package mainpage.fullscreen;
 
 import factory.WebDriverFactory;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.core.util.Assert;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.MainPage;
 
 public class FullScreenModeTest {
-    private static WebDriverFactory webDriverFactory = new WebDriverFactory();
-    private WebDriver driver;
+    private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
+    private WebDriver driver = null;
 
     @BeforeAll
-    public static void beforeAllSettings() {  //?????
-        WebDriverManager.chromedriver().setup();
+    static void beforeAllSettings(){
+        webDriverFactory.webDriverManagerSetup();
     }
 
-//    Открыть Chrome в режиме киоска
-//    Перейти на ресурс
-//    Нажать на "Открыть модальное окно"
-//    Проверить что открылось модальное окно
     @BeforeEach
-    public void createPage(){
-        driver = webDriverFactory.create("");
+    public void createDriverWithOptions() {
+        driver = webDriverFactory.create("-fullscreen");
     }
 
     @Test
-    public void modalBtnTest() throws InterruptedException {
+    public void sampleFormTest() throws InterruptedException {
         MainPage page = new MainPage(driver);
         page.open();
 
-//        if (driver == null)
-//            System.out.println("NULLLLLLLL");
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//        wait.pollingEvery(Duration.ofMillis(200));
-//        WebElement btn = driver.findElement(By.id("openModalBtn"));
-////        System.out.println(driver.findElement(By.id("myModal")).findElement(By.tagName("")));
-////        btn.click();
-//        System.out.println(driver.findElement(By.id("myModal")).getText());
-//        Thread.sleep(5000);
+        String name = "Anton";
+        String email = "antonio_from_StAntonio@gmail.com";
 
-//        Assertions.assertEquals();
+        page.fillSampleForm(name, email);
+        Thread.sleep(1000);
+        page.submitSampleForm();
+
+        page.messageBoxTextShouldBe(name, email);
     }
 
     @AfterEach
@@ -47,5 +42,6 @@ public class FullScreenModeTest {
         if (driver != null)
             driver.close();
     }
+
 
 }
