@@ -13,7 +13,7 @@ import org.openqa.selenium.safari.SafariDriver;
 public class WebDriverFactory {
     String browser = System.getProperty("browser");
 
-    // throws BrowserNotSupportedException ???
+
     public WebDriver create(String ... optionsArgs) throws BrowserNotSupportedException {
         return switch (browser) {
             case "chrome" -> new ChromeDriver((ChromeOptions) new ChromeSettings().settings(optionsArgs));

@@ -1,16 +1,18 @@
 package mainpage.fullscreen;
 
 import factory.WebDriverFactory;
-import org.apache.logging.log4j.core.util.Assert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.MainPage;
+
+import java.io.IOException;
 
 public class FullScreenModeTest {
     private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
     private WebDriver driver = null;
+    private static final Logger logger = LogManager.getLogger(FullScreenModeTest.class);
 
     @BeforeAll
     static void beforeAllSettings(){
@@ -19,11 +21,11 @@ public class FullScreenModeTest {
 
     @BeforeEach
     public void createDriverWithOptions() {
-        driver = webDriverFactory.create("-fullscreen");
+        driver = webDriverFactory.create("--start-fullscreen");
     }
 
     @Test
-    public void sampleFormTest() throws InterruptedException {
+    public void sampleFormTest() throws IOException {
         MainPage page = new MainPage(driver);
         page.open();
 
@@ -31,10 +33,10 @@ public class FullScreenModeTest {
         String email = "antonio_from_StAntonio@gmail.com";
 
         page.fillSampleForm(name, email);
-        Thread.sleep(1000);
         page.submitSampleForm();
 
-        page.messageBoxTextShouldBe(name, email);
+        String expected = String.format("Форма отправлена с именем: %s и email: %s", name, email);
+        page.messageBoxTextShouldBeSameAs(expected);
     }
 
     @AfterEach

@@ -16,6 +16,7 @@
         <selenium.version>4.27.0</selenium.version>
         <webdrivermanager.version>5.6.4</webdrivermanager.version>
         <log4j2.version>2.17.0</log4j2.version>
+        <log4j.api.version>2.17.0</log4j.api.version>
         <junit.version>5.10.0</junit.version>
         <assertj.version>3.27.3</assertj.version>
 
@@ -47,7 +48,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.17.0</version> <!-- Укажите актуальную версию -->
+            <version>${log4j.api.version}</version> <!-- Укажите актуальную версию -->
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

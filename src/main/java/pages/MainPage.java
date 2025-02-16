@@ -1,5 +1,7 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,22 +9,24 @@ import org.openqa.selenium.WebElement;
 
 public class MainPage extends AbsBasePage {
 
+    private static final Logger logger = LogManager.getLogger(MainPage.class);
+
     public MainPage(WebDriver driver) {
         super(driver, "");
     }
 
 
-    private final By textInputLocator = By.id("textInput");
-    private final By modalBtnLocator = By.id("openModalBtn");
-    private final By modalBtnAlertLocator = By.id("myModal");
-    private final By sampleFormLocator = By.id("sampleForm");
+    private final By textInputId = By.id("textInput");
+    private final By modalBtnId = By.id("openModalBtn");
+    private final By modalBtnAlertId = By.id("myModal");
+    private final By sampleFormId = By.id("sampleForm");
     private final By sampleFormInputNameLocator = By.xpath("//form/input[@name='name']");
     private final By sampleFormEmailInputSelector = By.cssSelector("input#email");
     private final By sampleFormSubmitBtnLocator = By.xpath("//form/button[@type='submit']");
-    private final By messageBoxSelector = By.id("messageBox");
+    private final By messageBoxId = By.id("messageBox");
 
     public WebElement getSampleForm () {
-        return driver.findElement(sampleFormLocator);
+        return driver.findElement(sampleFormId);
     }
 
     public WebElement getSampleFormNameInput() {
@@ -34,6 +38,11 @@ public class MainPage extends AbsBasePage {
     }
 
     public void fillSampleForm(String name, String email) {
+//        if (name == null || email == null){
+//            logger.error("Name or email is null!");
+//        }
+        logger.error("Checking");
+        logger.warn("Warn");
         driver.findElement(sampleFormInputNameLocator).sendKeys(name);
         driver.findElement(sampleFormEmailInputSelector).sendKeys(email);
     }
@@ -43,11 +52,10 @@ public class MainPage extends AbsBasePage {
     }
 
     public WebElement getMessageBox(){
-        return driver.findElement(messageBoxSelector);
+        return driver.findElement(messageBoxId);
     }
 
-    public void messageBoxTextShouldBe(String nameSend, String emailSend) {
-        String expected = String.format("Форма отправлена с именем: %s и email: %s", nameSend, emailSend);
+    public void messageBoxTextShouldBeSameAs(String expected) {
         String actual = this.getMessageBox().getText();
         Assertions.assertEquals(expected, actual);
     }
@@ -55,7 +63,7 @@ public class MainPage extends AbsBasePage {
 
 
     public WebElement getTextInput () {
-        return driver.findElement(textInputLocator);
+        return driver.findElement(textInputId);
     }
 
     public void textIntoElement(WebElement element, String text) {
@@ -66,13 +74,13 @@ public class MainPage extends AbsBasePage {
         Assertions.assertEquals(expectedText, inputElement.getDomProperty("value"));
     }
 
-    //modalButton
+
     public WebElement getModalButton () {
-        return driver.findElement(modalBtnLocator);
+        return driver.findElement(modalBtnId);
     }
 
     public WebElement getModalAlert () {
-        return driver.findElement(modalBtnAlertLocator);
+        return driver.findElement(modalBtnAlertId);
     }
 
     public void modalAlertShouldBeDisplayed(WebElement modalAlert) {
