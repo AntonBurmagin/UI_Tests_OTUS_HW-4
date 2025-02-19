@@ -23,7 +23,6 @@ public class HeadlessModeTest {
     public void createDriverWithOptions (){
         driver = webDriverFactory.create("--headless");
     }
-    // нет открытия вкладок из-за хэдлесс режима????
 
     @Test
     public void textInputTest() {

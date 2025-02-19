@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class WebDriverFactory {
-    String browser = System.getProperty("browser");
+    private final String browser = System.getProperty("browser");
 
 
     public WebDriver create(String ... optionsArgs) throws BrowserNotSupportedException {

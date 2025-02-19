@@ -19,30 +19,16 @@ public class MainPage extends AbsBasePage {
     private final By textInputId = By.id("textInput");
     private final By modalBtnId = By.id("openModalBtn");
     private final By modalBtnAlertId = By.id("myModal");
-    private final By sampleFormId = By.id("sampleForm");
     private final By sampleFormInputNameLocator = By.xpath("//form/input[@name='name']");
     private final By sampleFormEmailInputSelector = By.cssSelector("input#email");
     private final By sampleFormSubmitBtnLocator = By.xpath("//form/button[@type='submit']");
     private final By messageBoxId = By.id("messageBox");
 
-    public WebElement getSampleForm () {
-        return driver.findElement(sampleFormId);
-    }
-
-    public WebElement getSampleFormNameInput() {
-        return driver.findElement(sampleFormInputNameLocator);
-    }
-
-    public WebElement getSampleFormEmailInput() {
-        return driver.findElement(sampleFormEmailInputSelector);
-    }
 
     public void fillSampleForm(String name, String email) {
-//        if (name == null || email == null){
-//            logger.error("Name or email is null!");
-//        }
-        logger.error("Checking");
-        logger.warn("Warn");
+        if (name == null || email == null){
+            logger.error("Name or email is null!");
+        }
         driver.findElement(sampleFormInputNameLocator).sendKeys(name);
         driver.findElement(sampleFormEmailInputSelector).sendKeys(email);
     }

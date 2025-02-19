@@ -7,12 +7,11 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
-import java.io.IOException;
 
 public class FullScreenModeTest {
     private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
     private WebDriver driver = null;
-    private static final Logger logger = LogManager.getLogger(FullScreenModeTest.class);
+
 
     @BeforeAll
     static void beforeAllSettings(){
@@ -25,7 +24,7 @@ public class FullScreenModeTest {
     }
 
     @Test
-    public void sampleFormTest() throws IOException {
+    public void sampleFormTest() {
         MainPage page = new MainPage(driver);
         page.open();
 

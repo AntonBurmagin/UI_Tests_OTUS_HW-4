@@ -3,7 +3,6 @@ package mainpage.kiosk;
 import factory.WebDriverFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.MainPage;
 
 
@@ -30,9 +29,8 @@ public class KioskModeTest {
         MainPage page = new MainPage(driver);
         page.open();
 
-        WebElement modalAlert = page.getModalAlert();
         page.getModalButton().click();
-        page.modalAlertShouldBeDisplayed(modalAlert);
+        page.modalAlertShouldBeDisplayed(page.getModalAlert());
     }
 
     @AfterEach
