@@ -25,12 +25,15 @@ public class KioskModeTest {
     }
 
     @Test
-    public void modalBtnTest() {
+    public void modalBtnTest() throws InterruptedException {
         MainPage page = new MainPage(driver);
         page.open();
 
+        page.modalAlertShouldNotBeDisplayed();
+
         page.getModalButton().click();
-        page.modalAlertShouldBeDisplayed(page.getModalAlert());
+
+        page.modalAlertShouldBeDisplayed();
     }
 
     @AfterEach

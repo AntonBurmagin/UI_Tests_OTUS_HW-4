@@ -1,8 +1,6 @@
 package mainpage.fullscreen;
 
 import factory.WebDriverFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
