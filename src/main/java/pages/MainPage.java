@@ -8,18 +8,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import waiter.CustomWaiter;
 
 import java.time.Duration;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainPage extends AbsBasePage {
-    private final WebDriverWait waiter = new WebDriverWait(driver, Duration.ofSeconds(5));
     private static final Logger logger = LogManager.getLogger(MainPage.class);
+    private final CustomWaiter waiter = new CustomWaiter(driver, logger);
 
-    public MainPage(WebDriver driver) {
-        super(driver, "");
-    }
+    public MainPage(WebDriver driver) {super(driver, "");}
 
 
     private final By textInputId = By.id("textInput");
@@ -76,23 +76,11 @@ public class MainPage extends AbsBasePage {
     }
 
     public void modalAlertShouldNotBeDisplayed() {
-        try {
-            waiter.until(ExpectedConditions.invisibilityOf(getModalAlert()));
-        } catch (TimeoutException exception) {
-            logger.error("Timeout exception in modalAlertShouldNotBeDisplayed()");
-        } finally {
-            assertThat(getModalAlert().isDisplayed()).isFalse();
-        }
+        assertTrue(waiter.waitForCondition(ExpectedConditions.invisibilityOf(getModalAlert())));
     }
 
     public void modalAlertShouldBeDisplayed() {
-        try {
-            waiter.until(ExpectedConditions.visibilityOf(getModalAlert()));
-        } catch (TimeoutException exception) {
-            logger.error("Timeout exception in modalAlertShouldBeDisplayed()");
-        } finally {
-            assertThat(getModalAlert().isDisplayed()).isTrue();
-        }
+        assertTrue(waiter.waitForCondition(ExpectedConditions.visibilityOf(getModalAlert())));
     }
 
 }
