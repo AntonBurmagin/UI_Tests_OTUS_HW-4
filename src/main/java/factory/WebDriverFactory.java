@@ -31,7 +31,8 @@ public class WebDriverFactory {
         if (!remoteUrl.isEmpty()) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             Map<String, Object> options = new HashMap<>();
-            options.put(CapabilityType.BROWSER_NAME, browser);
+            capabilities.setCapability(CapabilityType.BROWSER_NAME, browser);
+
             options.put(CapabilityType.BROWSER_VERSION, browserVersion);
             options.put("enableVNC", true);
             capabilities.setCapability("selenoid:options", options);
