@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.MainPage;
 
+import java.net.MalformedURLException;
+
 public class HeadlessModeTest {
     private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
     private WebDriver driver = null;
@@ -20,7 +22,7 @@ public class HeadlessModeTest {
     //    Проверить что Текст соответствует введенному
 
     @BeforeEach
-    public void createDriverWithOptions (){
+    public void createDriverWithOptions () throws MalformedURLException {
         driver = webDriverFactory.create("--headless");
     }
 

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
+import java.net.MalformedURLException;
+
 
 public class FullScreenModeTest {
     private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
@@ -17,7 +19,7 @@ public class FullScreenModeTest {
     }
 
     @BeforeEach
-    public void createDriverWithOptions() {
+    public void createDriverWithOptions() throws MalformedURLException {
         driver = webDriverFactory.create("--start-fullscreen");
     }
 

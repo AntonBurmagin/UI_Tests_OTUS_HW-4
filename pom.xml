@@ -76,6 +76,8 @@
                     <systemPropertyVariables>
                         <base.url>https://otus.home.kartushin.su/training.html</base.url>
                         <browser>chrome</browser>
+                        <remote.url>http://193.104.57.173/wd/hub</remote.url>
+                        <browser.version>128.0</browser.version>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

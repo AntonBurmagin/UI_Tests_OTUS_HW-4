@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
+import java.net.MalformedURLException;
+
 
 public class KioskModeTest {
     private static final WebDriverFactory webDriverFactory = new WebDriverFactory();
@@ -20,7 +22,7 @@ public class KioskModeTest {
 //    Нажать на "Открыть модальное окно"
 //    Проверить что открылось модальное окно
     @BeforeEach
-    public void createDriverWithOptions(){
+    public void createDriverWithOptions() throws MalformedURLException {
         driver = webDriverFactory.create("--kiosk");
     }
 
